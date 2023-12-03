@@ -1,0 +1,39 @@
+<div class="campaign-table-container">
+  <table class="campaign-table" *ngIf="campaigns.length > 0; else noCampaigns">
+    <thead>
+      <tr>
+        <th class="table-header">id</th>
+        <th class="table-header">name</th>
+        <th class="table-header">product advertised</th>
+        <th class="table-header">key words</th>
+        <th class="table-header">bid amount</th>
+        <th class="table-header">campaign fund</th>
+        <th class="table-header">status</th>
+        <th class="table-header">town</th>
+        <th class="table-header">radius</th>
+        <th class="table-header">remove</th>
+        <th class="table-header">edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let campaign of campaigns" [ngClass]="{'row-error': campaign.status === 'inactive'}" class="table-row">
+       <td class="table-cell">{{ campaign.id }}</td>
+       <td class="table-cell">{{ campaign.name }}</td>
+       <td class="table-cell">{{ campaign.productName }}</td>
+       <td class="table-cell">{{ campaign.keyWords.join(', ') }}</td>
+       <td class="table-cell">{{ campaign.bidAmount | currency:'PLN' }}</td>
+       <td class="table-cell">{{ campaign.fund | currency:'PLN'  }}</td>
+       <td class="table-cell">{{ campaign.status === 'active' ? 'Active' : 'Inactive' }}</td>
+       <td class="table-cell">{{ campaign.town }}</td>
+       <td class="table-cell">{{ campaign.radius | kilometers }}</td>
+       <td class="table-cell" ><button (click)="removeCampaign(campaign)">remove</button></td>
+       <td class="table-cell" ><button (click)="editCampaign(campaign)">edit</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noCampaigns>
+    <div class="no-campaigns">
+      <p class="no-campaigns-info">No campaigns available</p>
+    </div>
+  </ng-template>
+</div>
