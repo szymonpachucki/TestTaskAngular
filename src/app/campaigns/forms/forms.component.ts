@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css'],
 })
+
 export class FormsComponent implements OnInit {
   budgetInicial: number = 10000;
   budget: number = this.budgetInicial;
